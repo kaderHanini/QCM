@@ -58,12 +58,12 @@ public class BeanServices {
     private Enseignant  enseignant = new Enseignant();
     private Etudiant etudiant = new Etudiant();
 
-    public Etudiant getEtudian() {
+    public Etudiant getEtudiant() {
         return etudiant;
     }
 
-    public void setEtudian(Etudiant etudian) {
-        this.etudiant = etudian;
+    public void setEtudiant(Etudiant etudiant) {
+        this.etudiant = etudiant;
     }
 
     public Enseignant getEnseignant() {
