@@ -22,53 +22,51 @@
                     
                     
       <h:outputLabel value="Theme" />
-      <h:inputText value="#{beanServices.question.question}"/>
+      <h:inputText value="#{beanServices.question.theme}"/>
       
-            <h:outputLabel value="Type Question " ></h:outputLabel>
-      <h:selectOneMenu value="#{beanServices.reponse.typeReponse}">
-            <f:selectItem itemValue="vrai" itemLabel="Vrai" />
-            <f:selectItem itemValue="faux" itemLabel="Faux" />	   							
+      <h:outputLabel value="Type Question " ></h:outputLabel>
+      <h:selectOneMenu value="#{beanServices.question.typeQuestion}">
+            <f:selectItem itemValue="vrai/Faux" itemLabel="Vrai/Faux" />
+            <f:selectItem itemValue="Choix Multiples" itemLabel="Choix Multiples" />	   							
        </h:selectOneMenu>
       
-      
-      
         <h:outputLabel value="Nombre Question" />
-        <h:inputText value="#{beanServices.question.question}"/>
+        <h:inputText value="#{beanServices.nbrQuestion}"/>
                     
      
      
       
       <h:outputLabel value="Duree" />
-      <h:inputText value="#{beanServices.reponse.reponse}" size="30"></h:inputText>
+      <h:inputText value="#{beanServices.parametrage.duree}" size="30"></h:inputText>
       
       
-      <h:outputLabel value="Calculatrice" ></h:outputLabel>
-      <h:selectOneMenu value="#{beanServices.reponse.typeReponse}">
-            <f:selectItem itemValue="vrai" itemLabel="Vrai" />
-            <f:selectItem itemValue="faux" itemLabel="Faux" />	   							
+      <h:outputLabel value="Calculatrice Autorisée" ></h:outputLabel>
+      <h:selectOneMenu value="#{beanServices.parametrage.cacl}">
+            <f:selectItem itemValue="true" itemLabel="Oui" />
+            <f:selectItem itemValue="false" itemLabel="Non" />	   							
        </h:selectOneMenu>	
       
       
       
       
       
-      
-      
+  
         <h:outputLabel value="NbrPts +" />
-      <h:inputText value="#{beanServices.reponse.reponse}" size="30"></h:inputText>
+        <h:inputText value="#{beanServices.parametrage.ptsReponseCorrecte}" size="5"></h:inputText>
       
       <h:outputLabel value="NbrPts -" />
-      <h:inputText value="#{beanServices.reponse.reponse}" size="30"></h:inputText>
+      <h:inputText value="#{beanServices.parametrage.ptsReponseIncorrecte}" size="5"></h:inputText>
       
       
       <h:outputLabel value="NbrPts 0" />
-      <h:inputText value="#{beanServices.reponse.reponse}" size="30"></h:inputText>
+      <h:inputText value="#{beanServices.parametrage.ptsAbsenceReponse}" size="30"></h:inputText>
       
-      
+      <h:outputLabel value="Enregistrer Parametrage" />
+      <h:inputText value="#{beanServices.parametrage.nomModele}" size="30"></h:inputText>
       
       <f:facet name="footer">
          <h:panelGroup style="display:block; text-align:center">
-             <h:commandButton value="Generer Qcm" action="#{beanServices.ajouterReponse}" >
+             <h:commandButton value="Generer Qcm" action="#{beanServices.ajouterParametrageExamen}" >
                 
              </h:commandButton>
          </h:panelGroup>

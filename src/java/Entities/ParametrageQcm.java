@@ -54,7 +54,7 @@ public class ParametrageQcm implements Serializable {
         return "Entities.ParametrageQcm[ id=" + id + " ]";
     }
     
-    private String typeQuestion;
+    
     private int duree;
     private int nbrQuestion;
     private Boolean cacl;
@@ -119,13 +119,7 @@ public class ParametrageQcm implements Serializable {
         this.ptsReponseIncorrecte = ptsReponseIncorrecte;
     }
 
-    public String getTypeQuestion() {
-        return typeQuestion;
-    }
 
-    public void setTypeQuestion(String typeQuestion) {
-        this.typeQuestion = typeQuestion;
-    }
     
     
     
