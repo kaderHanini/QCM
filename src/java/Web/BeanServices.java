@@ -56,14 +56,14 @@ public class BeanServices {
     private ParametrageQcm parametrage = new ParametrageQcm();
     private Examen  examen = new Examen();
     private Enseignant  enseignant = new Enseignant();
-    private Etudiant etudian = new Etudiant();
+    private Etudiant etudiant = new Etudiant();
 
     public Etudiant getEtudian() {
-        return etudian;
+        return etudiant;
     }
 
     public void setEtudian(Etudiant etudian) {
-        this.etudian = etudian;
+        this.etudiant = etudian;
     }
 
     public Enseignant getEnseignant() {
