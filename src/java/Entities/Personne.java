@@ -7,6 +7,8 @@ package Entities;
 
 import java.io.Serializable;
 import java.util.Date;
+
+
 import javax.persistence.*;
 
 /**
@@ -129,11 +131,16 @@ public class Personne implements Serializable {
 
 
     @Temporal(javax.persistence.TemporalType.DATE)
-    private Date dateNasi;
+ private Date dateNais;
 
-    public Date getDateNasi() {
-        return dateNasi;
+    public Date getDateNais() {
+        return dateNais;
     }
+
+    public void setDateNais(Date dateNais) {
+        this.dateNais = dateNais;
+    }
+   
 
     @Override
     public int hashCode() {

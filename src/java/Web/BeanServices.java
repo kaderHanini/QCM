@@ -8,11 +8,14 @@ import DAO.EnseignantFacadeLocal;
 import DAO.EtudiantFacadeLocal;
 import DAO.ExamenFacadeLocal;
 import DAO.ParametrageQcmFacade;
+import DAO.ParametrageQcmFacadeLocal;
+import DAO.PersonneFacadeLocal;
 import DAO.QuestionFacade;
 import DAO.QuestionFacadeLocal;
 import DAO.ReponseFacade;
 import DAO.ReponseFacadeLocal;
 import Entities.*;
+import java.util.Date;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -33,8 +36,11 @@ public class BeanServices {
     @EJB
     private QuestionFacadeLocal DAOQuestion;
     
+     @EJB
+    private PersonneFacadeLocal DAOPersonne;
+    
     @EJB
-    private ParametrageQcmFacade DAOParametrage;
+    private ParametrageQcmFacadeLocal DAOParametrage;
     
     @EJB
     private ReponseFacadeLocal DAOReponse;
@@ -42,11 +48,18 @@ public class BeanServices {
     @EJB
     private ExamenFacadeLocal DAOExamen;
     
-   @EJB
+    @EJB
     private EnseignantFacadeLocal DAOEnseignant;
+
+    public EnseignantFacadeLocal getDAOEnseignant() {
+        return DAOEnseignant;
+    }
+
+    public void setDAOEnseignant(EnseignantFacadeLocal DAOEnseignant) {
+        this.DAOEnseignant = DAOEnseignant;
+    }
    
- 
-     @EJB
+    @EJB
     private EtudiantFacadeLocal DAOEtudiant;
     
     
@@ -55,7 +68,9 @@ public class BeanServices {
     private Reponse reponse = new Reponse();
     private ParametrageQcm parametrage = new ParametrageQcm();
     private Examen  examen = new Examen();
+    //<editor-fold defaultstate="collapsed" desc="comment">
     private Enseignant  enseignant = new Enseignant();
+    //</editor-fold>
     private Etudiant etudiant = new Etudiant();
 
     public Etudiant getEtudiant() {
@@ -164,7 +179,8 @@ public class BeanServices {
         public void ajouterEtudiant()
     {
      
-        DAOEtudiant.create(etudiant);
+              
+                DAOEtudiant.create(etudiant);
       
      }
     
@@ -172,7 +188,10 @@ public class BeanServices {
     
     public void ajouterEnseignant()
     {
-          DAOEnseignant.create(enseignant);
+        
+        System.out.println("dddddddddddddddd");
+           
+       
     }
     
     

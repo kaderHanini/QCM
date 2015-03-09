@@ -18,29 +18,42 @@
         <h:outputText value="Ajouter Enseignant "/>
       </f:facet>
                     
-      <h:outputLabel value="Question" />
-      <h:inputText value="#{beanServices.question.question}"></h:inputText>
+      <h:outputLabel value="Nom" />
+      <h:inputText value="#{beanServices.enseignant.nom}"></h:inputText>
       
       
-      <h:outputLabel value="TypeQuestion" />
-       <h:inputText value="#{beanServices.question.typeQuestion}"></h:inputText>
+      <h:outputLabel value="Prenom" />
+      <h:inputText value="#{beanServices.enseignant.prenom}"></h:inputText>
        
        
-       <h:outputLabel value="Theme" /> 
-       <h:inputText value="#{beanServices.question.theme}"></h:inputText>
+       <h:outputLabel value="Date de Naissance" /> 
+       <h:inputText value="#{beanServices.enseignant.dateNasi}"></h:inputText>
          
+      
+       <h:outputLabel value="Adresse Sexe " />
+       <h:inputText value="#{beanServices.enseignant.sexe}"></h:inputText>
        
-       <h:outputLabel value="SousTheme " />
-          <h:inputText value="#{beanServices.question.sousTheme}"></h:inputText>
+       <h:outputLabel value="Adresse Email " />
+       <h:inputText value="#{beanServices.enseignant.email}"></h:inputText>
               
+       
       
       
+      <h:outputLabel value="Telephone " />
+      <h:inputText value="#{beanServices.enseignant.tel}"></h:inputText>
+      
+      <h:outputLabel value="Specialité  " />
+      <h:inputText value="#{beanServices.enseignant.specialite}"></h:inputText>
+      
+      
+       <h:outputLabel value="Numero Burreau " />
+       <h:inputText value="#{beanServices.enseignant.numBureau}"></h:inputText>
       
       
       
       <f:facet name="footer">
          <h:panelGroup style="display:block; text-align:center">
-            <h:commandButton value="Ajouter" action="#{beanServices.ajouterQuestion}" ></h:commandButton>
+             <h:commandButton value="Ajouter" action="#{beanServices.ajouterEnseignant()}" ></h:commandButton>
          </h:panelGroup>
       </f:facet>
 </h:panelGrid>

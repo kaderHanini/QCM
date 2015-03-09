@@ -12,4 +12,7 @@
     <property name="User" value="admin"/>
     <property name="Password" value="admin"/>
   </jdbc-connection-pool>
+  
+    
 </resources>
+  

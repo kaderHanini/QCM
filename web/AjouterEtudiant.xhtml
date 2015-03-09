@@ -2,12 +2,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <f:view>
             <h:form>
                 
                 <h:panelGrid id="panel" columns="2" border="0"
@@ -32,7 +31,9 @@
       
        
        <h:outputLabel value="Date de naissance" /> 
-       <h:inputText value="#{beanServices.etudiant.dateNasi}"></h:inputText>
+       <h:inputText value="#{beanServices.etudiant.dateNais}">
+       <f:convertDateTime pattern="d-M-yyyy" />
+       </h:inputText>
          
        
        <h:outputLabel value="Adresse email " />
@@ -50,13 +51,13 @@
 
       <f:facet name="footer">
          <h:panelGroup style="display:block; text-align:center">
-             <h:commandButton value="Ajouter" action="#{beanServices.ajouterEtudiant()}" ></h:commandButton>
+             <h:commandButton value="Ajouter" action="#{beanServices.ajouterEtudiant}" ></h:commandButton>
          </h:panelGroup>
       </f:facet>
 </h:panelGrid>
         
             </h:form>
-        </f:view>
+   
 
         
     </h:body>
