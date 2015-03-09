@@ -4,10 +4,14 @@
  */
 package Web;
 
+import DAO.ExamenFacadeLocal;
+import DAO.ParametrageQcmFacade;
 import DAO.QuestionFacade;
 import DAO.QuestionFacadeLocal;
 import DAO.ReponseFacade;
 import DAO.ReponseFacadeLocal;
+import Entities.Examen;
+import Entities.ParametrageQcm;
 import Entities.Question;
 import Entities.Reponse;
 import javax.ejb.EJB;
@@ -29,29 +33,54 @@ public class BeanServices {
     
     @EJB
     private QuestionFacadeLocal DAOQuestion;
-
-    public QuestionFacadeLocal getDAOQuestion() {
-        return DAOQuestion;
-    }
-
-    public void setDAOQuestion(QuestionFacadeLocal DAOQuestion) {
-        this.DAOQuestion = DAOQuestion;
-    }
-
-    public ReponseFacadeLocal getDAOReponse() {
-        return DAOReponse;
-    }
-
-    public void setDAOReponse(ReponseFacadeLocal DAOReponse) {
-        this.DAOReponse = DAOReponse;
-    }
-   
+    
+    @EJB
+    private ParametrageQcmFacade DAOParametrage;
+    
     @EJB
     private ReponseFacadeLocal DAOReponse;
     
-   
+    @EJB
+    private ExamenFacadeLocal DAOExamen;
+    
+    
+    
     private Question question = new Question();
     private Reponse reponse = new Reponse();
+    private ParametrageQcm parametrage = new ParametrageQcm();
+    private Examen  examen = new Examen();
+    private int nbrQuestion ;
+
+    public int getNbrQuestion() {
+        return nbrQuestion;
+    }
+
+    public void setNbrQuestion(int nbrQuestion) {
+        this.nbrQuestion = nbrQuestion;
+    }
+    
+    
+    public Examen getExamen() {
+        return examen;
+    }
+
+    public void setExamen(Examen examen) {
+        this.examen = examen;
+    }
+    
+    
+
+    public ParametrageQcm getParametrage() {
+        return parametrage;
+    }
+
+    public void setParametrage(ParametrageQcm parametrage) {
+        this.parametrage = parametrage;
+    }
+    
+    
+    
+    
 
     public void setDAOQuestion(QuestionFacade DAOQuestion) {
         this.DAOQuestion = DAOQuestion;
@@ -90,18 +119,22 @@ public class BeanServices {
    
     public void ajouterReponse()
     {
-       
-       reponse.setQuestion(question);
-      
-                           DAOReponse.create(reponse);
-       
-       
+      reponse.setQuestion(question);
+      DAOReponse.create(reponse);
+        
     }
     
     
-    public BeanServices() {
-        
-      
-        
-    }
+    
+    
+    public void ajouterParametrageExamen()
+    {
+     
+        DAOParametrage.create(parametrage);
+        DAOExamen.create(examen);
+     }
+    
+    
+    
+    
 }
