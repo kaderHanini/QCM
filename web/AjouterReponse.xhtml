@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+       <f:view>
+            <h:form>
+                 <h:inputHidden value="#{beanServices.question.id}" size="30"></h:inputHidden>
+                 <h:inputHidden value="#{beanServices.question.question}" size="30"></h:inputHidden>
+                <h:panelGrid id="panel" columns="2" border="0"
+   cellpadding="10" cellspacing="1">
+      <f:facet name="header">
+        <h:outputText value="Ajouter Reponse"/>
+      </f:facet>
+                  
+                    
+                    
+      <h:outputLabel value="Question" />
+      <h:outputText value="#{beanServices.question.question}"></h:outputText>
+                    
+     
+     
+      
+      <h:outputLabel value="Reponse" />
+      <h:inputText value="#{beanServices.reponse.reponse}" size="30"></h:inputText>
+      
+      
+      <h:outputLabel value="Type Reponse" ></h:outputLabel>
+ 
+      
+       <h:selectOneMenu value="#{beanServices.reponse.typeReponse}">
+            <f:selectItem itemValue="vrai" itemLabel="Vrai" />
+            <f:selectItem itemValue="faux" itemLabel="Faux" />	   							
+       </h:selectOneMenu>	
+      
+      
+      
+      
+      <f:facet name="footer">
+         <h:panelGroup style="display:block; text-align:center">
+             <h:commandButton value="Ajouter" action="#{beanServices.ajouterReponse}" >
+                
+             </h:commandButton>
+         </h:panelGroup>
+      </f:facet>
+</h:panelGrid>
+                
+                
+              
+               
+              
+                
+                
+            </h:form>
+        </f:view>
+
+    </h:body>
+</html>
+

@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        
+        
+        
+       <f:view>
+            <h:form>
+               
+                <h:panelGrid id="panel" columns="2" border="0"
+   cellpadding="10" cellspacing="1">
+      <f:facet name="header">
+        <h:outputText value="Generer Qcm"/>
+      </f:facet>
+                  
+                    
+                    
+      <h:outputLabel value="Theme" />
+      <h:inputText value="#{beanServices.question.question}"/>
+      
+            <h:outputLabel value="Type Question " ></h:outputLabel>
+      <h:selectOneMenu value="#{beanServices.reponse.typeReponse}">
+            <f:selectItem itemValue="vrai" itemLabel="Vrai" />
+            <f:selectItem itemValue="faux" itemLabel="Faux" />	   							
+       </h:selectOneMenu>
+      
+      
+      
+        <h:outputLabel value="Nombre Question" />
+        <h:inputText value="#{beanServices.question.question}"/>
+                    
+     
+     
+      
+      <h:outputLabel value="Duree" />
+      <h:inputText value="#{beanServices.reponse.reponse}" size="30"></h:inputText>
+      
+      
+      <h:outputLabel value="Calculatrice" ></h:outputLabel>
+      <h:selectOneMenu value="#{beanServices.reponse.typeReponse}">
+            <f:selectItem itemValue="vrai" itemLabel="Vrai" />
+            <f:selectItem itemValue="faux" itemLabel="Faux" />	   							
+       </h:selectOneMenu>	
+      
+      
+      
+      
+      
+      
+      
+        <h:outputLabel value="NbrPts +" />
+      <h:inputText value="#{beanServices.reponse.reponse}" size="30"></h:inputText>
+      
+      <h:outputLabel value="NbrPts -" />
+      <h:inputText value="#{beanServices.reponse.reponse}" size="30"></h:inputText>
+      
+      
+      <h:outputLabel value="NbrPts 0" />
+      <h:inputText value="#{beanServices.reponse.reponse}" size="30"></h:inputText>
+      
+      
+      
+      <f:facet name="footer">
+         <h:panelGroup style="display:block; text-align:center">
+             <h:commandButton value="Generer Qcm" action="#{beanServices.ajouterReponse}" >
+                
+             </h:commandButton>
+         </h:panelGroup>
+      </f:facet>
+</h:panelGrid>
+                
+                
+              
+               
+              
+                
+                
+            </h:form>
+        </f:view>
+    </h:body>
+</html>
+
