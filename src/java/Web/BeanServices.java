@@ -153,13 +153,27 @@ public class BeanServices {
     
     
     
-    
-    public void ajouterParametrageExamen()
+      public void ajouterParametrageExamen()
     {
      
         DAOParametrage.create(parametrage);
         DAOExamen.create(examen);
      }
+      
+      
+        public void ajouterEtudiant()
+    {
+     
+        DAOEtudiant.create(etudiant);
+      
+     }
+    
+    
+    
+    public void ajouterEnseignant()
+    {
+          DAOEnseignant.create(enseignant);
+    }
     
     
     
