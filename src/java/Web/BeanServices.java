@@ -5,6 +5,7 @@
 package Web;
 
 import DAO.EnseignantFacadeLocal;
+import DAO.EtudiantFacadeLocal;
 import DAO.ExamenFacadeLocal;
 import DAO.ParametrageQcmFacade;
 import DAO.QuestionFacade;
@@ -43,6 +44,10 @@ public class BeanServices {
     
    @EJB
     private EnseignantFacadeLocal DAOEnseignant;
+   
+ 
+     @EJB
+    private EtudiantFacadeLocal DAOEtudiant;
     
     
     
@@ -51,6 +56,15 @@ public class BeanServices {
     private ParametrageQcm parametrage = new ParametrageQcm();
     private Examen  examen = new Examen();
     private Enseignant  enseignant = new Enseignant();
+    private Etudiant etudian = new Etudiant();
+
+    public Etudiant getEtudian() {
+        return etudian;
+    }
+
+    public void setEtudian(Etudiant etudian) {
+        this.etudian = etudian;
+    }
 
     public Enseignant getEnseignant() {
         return enseignant;
