@@ -4,16 +4,14 @@
  */
 package Web;
 
+import DAO.EnseignantFacadeLocal;
 import DAO.ExamenFacadeLocal;
 import DAO.ParametrageQcmFacade;
 import DAO.QuestionFacade;
 import DAO.QuestionFacadeLocal;
 import DAO.ReponseFacade;
 import DAO.ReponseFacadeLocal;
-import Entities.Examen;
-import Entities.ParametrageQcm;
-import Entities.Question;
-import Entities.Reponse;
+import Entities.*;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -43,12 +41,27 @@ public class BeanServices {
     @EJB
     private ExamenFacadeLocal DAOExamen;
     
+   @EJB
+    private EnseignantFacadeLocal DAOEnseignant;
+    
     
     
     private Question question = new Question();
     private Reponse reponse = new Reponse();
     private ParametrageQcm parametrage = new ParametrageQcm();
     private Examen  examen = new Examen();
+    private Enseignant  enseignant = new Enseignant();
+
+    public Enseignant getEnseignant() {
+        return enseignant;
+    }
+
+    public void setEnseignant(Enseignant enseignant) {
+        this.enseignant = enseignant;
+    }
+    
+    
+    
     private int nbrQuestion ;
 
     public int getNbrQuestion() {
