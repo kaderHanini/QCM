@@ -170,9 +170,12 @@ public class BeanServices {
     
       public void ajouterParametrageExamen()
     {
-     
         DAOParametrage.create(parametrage);
+        
+        examen.setParametrage(parametrage);
         DAOExamen.create(examen);
+    
+        
      }
       
       
