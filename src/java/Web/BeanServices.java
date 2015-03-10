@@ -189,7 +189,7 @@ public class BeanServices {
     public void ajouterEnseignant()
     {
         
-        System.out.println("dddddddddddddddd");
+       DAOEnseignant.create(enseignant);
            
        
     }

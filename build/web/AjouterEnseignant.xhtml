@@ -27,7 +27,9 @@
        
        
        <h:outputLabel value="Date de Naissance" /> 
-       <h:inputText value="#{beanServices.enseignant.dateNasi}"></h:inputText>
+       <h:inputText value="#{beanServices.enseignant.dateNais}">
+        <f:convertDateTime pattern="d-M-yyyy" />
+       </h:inputText>
          
       
        <h:outputLabel value="Adresse Sexe " />
@@ -53,7 +55,7 @@
       
       <f:facet name="footer">
          <h:panelGroup style="display:block; text-align:center">
-             <h:commandButton value="Ajouter" action="#{beanServices.ajouterEnseignant()}" ></h:commandButton>
+             <h:commandButton value="Ajouter" action="#{beanServices.ajouterEnseignant}" ></h:commandButton>
          </h:panelGroup>
       </f:facet>
 </h:panelGrid>

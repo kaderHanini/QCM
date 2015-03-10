@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+       xmlns:p="http://primefaces.org/ui" >
     <h:head>
         <title>Facelet Title</title>
     </h:head>
@@ -12,66 +13,88 @@
         
        <f:view>
             <h:form>
-               
-                <h:panelGrid id="panel" columns="2" border="0"
-   cellpadding="10" cellspacing="1">
-      <f:facet name="header">
-        <h:outputText value="Generer Qcm"/>
-      </f:facet>
-                  
-                    
-                    
-      <h:outputLabel value="Theme" />
-      <h:inputText value="#{beanServices.question.theme}"/>
+                
+                
+                
+                 <p:fieldset legend="Parametrage QCM" style="margin-bottom:20px">
+                
+        <h:panelGrid id="panel" columns="2" border="0" cellpadding="10" cellspacing="1">
+     
+      <p:outputLabel value="Theme" />
+      <p:inputText value="#{beanServices.question.theme}" required="true" id="txt" />
+     
+       
+       
       
-      <h:outputLabel value="Type Question " ></h:outputLabel>
-      <h:selectOneMenu value="#{beanServices.question.typeQuestion}">
+      <h:outputLabel value="Type Question" ></h:outputLabel>
+      <p:selectOneMenu value="#{beanServices.question.typeQuestion}"   >
             <f:selectItem itemValue="vrai/Faux" itemLabel="Vrai/Faux" />
             <f:selectItem itemValue="Choix Multiples" itemLabel="Choix Multiples" />	   							
-       </h:selectOneMenu>
+       </p:selectOneMenu>
       
-        <h:outputLabel value="Nombre Question" />
-        <h:inputText value="#{beanServices.nbrQuestion}"/>
+        <p:outputLabel value="Nombre Question" />
+        <p:inputText value="#{beanServices.nbrQuestion}" size="2" />
+        
+          <p:outputLabel value="Date Examen" />
+        <p:calendar value="#{calendarView.date1}" pattern="MM/dd/yyyy"/>
                     
+        
+        <p:outputLabel value="Type Examen" />
+        <p:selectOneMenu value="#{beanServices.examen.typeExamen}"   >
+            <f:selectItem itemValue="Entraînement" itemLabel="Entraînement" />
+            <f:selectItem itemValue="Interrogation écrite" itemLabel="Interrogation" />
+             <f:selectItem itemValue="Partiel" itemLabel="Partiel" />
+            <f:selectItem itemValue="Terminal" itemLabel="Terminal" />
+       </p:selectOneMenu>
+
      
-     
       
-      <h:outputLabel value="Duree" />
-      <h:inputText value="#{beanServices.parametrage.duree}" size="30"></h:inputText>
+      <p:outputLabel value="Duree" />
+      <p:inputText value="#{beanServices.parametrage.duree}" size="10"/>
       
       
-      <h:outputLabel value="Calculatrice Autorisée" ></h:outputLabel>
-      <h:selectOneMenu value="#{beanServices.parametrage.cacl}">
+      <p:outputLabel value="Calculatrice Autorisée" />
+      <p:selectOneMenu value="#{beanServices.parametrage.cacl}">
             <f:selectItem itemValue="true" itemLabel="Oui" />
             <f:selectItem itemValue="false" itemLabel="Non" />	   							
-       </h:selectOneMenu>	
+       </p:selectOneMenu>	
       
       
       
       
       
   
-        <h:outputLabel value="NbrPts +" />
-        <h:inputText value="#{beanServices.parametrage.ptsReponseCorrecte}" size="5"></h:inputText>
+        <p:outputLabel value="NbrPts +" />
+        <p:inputText value="#{beanServices.parametrage.ptsReponseCorrecte}" size="2" />
       
-      <h:outputLabel value="NbrPts -" />
-      <h:inputText value="#{beanServices.parametrage.ptsReponseIncorrecte}" size="5"></h:inputText>
+      <p:outputLabel value="NbrPts -" />
+      <p:inputText value="#{beanServices.parametrage.ptsReponseIncorrecte}" size="2" />
       
       
-      <h:outputLabel value="NbrPts 0" />
-      <h:inputText value="#{beanServices.parametrage.ptsAbsenceReponse}" size="30"></h:inputText>
+      <p:outputLabel value="NbrPts 0" />
+      <p:inputText value="#{beanServices.parametrage.ptsAbsenceReponse}" size="2"/>
       
-      <h:outputLabel value="Enregistrer Parametrage" />
-      <h:inputText value="#{beanServices.parametrage.nomModele}" size="30"></h:inputText>
-      
-      <f:facet name="footer">
-         <h:panelGroup style="display:block; text-align:center">
-             <h:commandButton value="Generer Qcm" action="#{beanServices.ajouterParametrageExamen}" >
+      <p:outputLabel value="Enregistrer Parametrage" />
+      <p:inputText value="#{beanServices.parametrage.nomModele}" size="20"/>
+    
+      <f:facet name="footer" >
+        
+             <p:commandButton value="Generer Qcm" action="#{beanServices.ajouterParametrageExamen}" update="panel" />
                 
-             </h:commandButton>
-         </h:panelGroup>
+            <p:commandButton value="Annuler" action="#{beanServices.ajouterParametrageExamen}" update="panel" />
       </f:facet>
+  
+      
+
 </h:panelGrid>
+                     
+                     
+                     
+                 </p:fieldset>
+                   <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />    
+                
+             
+                
                 
                 
               

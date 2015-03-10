@@ -58,7 +58,7 @@ public class Question implements Serializable {
     private String typeQuestion;
 
     private String theme;
-    private String  sousTheme;
+ 
 
 
 
@@ -70,13 +70,9 @@ public class Question implements Serializable {
         this.question = question;
     }
 
-    public String getSousTheme() {
-        return sousTheme;
-    }
+  
 
-    public void setSousTheme(String sousTheme) {
-        this.sousTheme = sousTheme;
-    }
+ 
 
     public String getTheme() {
         return theme;
