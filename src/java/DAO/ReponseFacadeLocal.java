@@ -4,6 +4,7 @@
  */
 package DAO;
 
+import Entities.Question;
 import Entities.Reponse;
 import java.util.List;
 import javax.ejb.Local;
@@ -24,6 +25,8 @@ public interface ReponseFacadeLocal {
     Reponse find(Object id);
 
     List<Reponse> findAll();
+    
+    List<Reponse> RechercheReponse(Question question);
 
     List<Reponse> findRange(int[] range);
 

@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+       xmlns:p="http://primefaces.org/ui" >
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+       
+        
+        <h:form>
+            
+           
+            
+            
+            <p:dataScroller value="#{beanServices.listQuestionsExamen}" var="question" chunkSize="10">
+        <f:facet name="header">
+            Questions Examens
+        </f:facet>
+ 
+        <h:panelGrid columns="1" style="width:100%" >
+          
+ 
+            <p:outputPanel>
+                <h:panelGrid columns="2" cellpadding="5">
+                    <h:outputText value="Id:" />
+                    <h:outputText value="#{question.id}" style="font-weight: bold"/>
+ 
+                    <h:outputText value="Question:" />
+                    <h:outputText value="#{question.question}" style="font-weight: bold"/>
+ 
+                    <h:outputText value="Type Question :" />
+                    <h:outputText value="#{question.typeQuestion}" style="font-weight: bold"/>
+                </h:panelGrid>
+            </p:outputPanel>
+        </h:panelGrid>
+                
+                <p:separator></p:separator>
+    </p:dataScroller>
+            
+             <h:commandLink  value="Ajouter Question" action="ChoixQuestion" ></h:commandLink>
+             
+             <br></br>
+             
+              
+             <h:commandLink  value="Affecter Examen " action="AffecterExamen" ></h:commandLink>
+             
+             
+</h:form>
+        
+        
+        
+    </h:body>
+</html>
+

@@ -6,26 +6,35 @@ package Web;
 
 import DAO.EnseignantFacadeLocal;
 import DAO.EtudiantFacadeLocal;
+import DAO.ExamenEtudiantFacade;
+import DAO.ExamenEtudiantFacadeLocal;
 import DAO.ExamenFacadeLocal;
 import DAO.ParametrageQcmFacade;
 import DAO.ParametrageQcmFacadeLocal;
 import DAO.PersonneFacadeLocal;
+import DAO.QuestionExamenFacadeLocal;
 import DAO.QuestionFacade;
 import DAO.QuestionFacadeLocal;
 import DAO.ReponseFacade;
 import DAO.ReponseFacadeLocal;
 import Entities.*;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.EJB;
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author kader
  */
 @ManagedBean
-@RequestScoped
+@ApplicationScoped
+//ou RequestScoped
 public class BeanServices {
 
     /**
@@ -50,24 +59,80 @@ public class BeanServices {
     
     @EJB
     private EnseignantFacadeLocal DAOEnseignant;
+    
+    @EJB
+    private ExamenEtudiantFacadeLocal DAOExaEtu;
+   
+   
+    @EJB
+    private EtudiantFacadeLocal DAOEtudiant;
+    
+    
+    @EJB
+    private QuestionExamenFacadeLocal DAOQuestionExamen;
 
-    public EnseignantFacadeLocal getDAOEnseignant() {
+    public QuestionExamenFacadeLocal getDAOQuestionExamen() {
+        return DAOQuestionExamen;
+    }
+
+    public void setDAOQuestionExamen(QuestionExamenFacadeLocal DAOQuestionExamen) {
+        this.DAOQuestionExamen = DAOQuestionExamen;
+    }
+    
+       public EnseignantFacadeLocal getDAOEnseignant() {
         return DAOEnseignant;
     }
 
     public void setDAOEnseignant(EnseignantFacadeLocal DAOEnseignant) {
         this.DAOEnseignant = DAOEnseignant;
     }
-   
-    @EJB
-    private EtudiantFacadeLocal DAOEtudiant;
-    
     
     
     private Question question = new Question();
     private Reponse reponse = new Reponse();
     private ParametrageQcm parametrage = new ParametrageQcm();
     private Examen  examen = new Examen();
+    private List<Question> ListQuestions;
+    private List<Reponse> ListReponse;
+     private int nbrQuestionAjouter;
+     private ExamenEtudiant ExaEtu = new ExamenEtudiant();
+   
+     
+      private List<Question> ListQuestionsExamen;
+
+    public List<Question> getListQuestionsExamen() {
+        return ListQuestionsExamen;
+    }
+
+    public void setListQuestionsExamen(List<Question> ListQuestionsExamen) {
+        this.ListQuestionsExamen = ListQuestionsExamen;
+    }
+     
+     
+    public int getNbrQuestionAjouter() {
+        return nbrQuestionAjouter;
+    }
+
+    public void setNbrQuestionAjouter(int nbrQuestionAjouter) {
+        this.nbrQuestionAjouter = nbrQuestionAjouter;
+    }
+    private Question selectedQuestion;
+
+    public Question getSelectedQuestion() {
+        return selectedQuestion;
+    }
+
+    public void setSelectedQuestion(Question selectedQuestion) {
+        this.selectedQuestion = selectedQuestion;
+    }
+    
+    public List<Question> getListQuestions() {
+        return ListQuestions;
+    }
+
+    public void setListQuestions(List<Question> ListQuestions) {
+        this.ListQuestions = ListQuestions;
+    }
     //<editor-fold defaultstate="collapsed" desc="comment">
     private Enseignant  enseignant = new Enseignant();
     //</editor-fold>
@@ -168,14 +233,18 @@ public class BeanServices {
     
     
     
-      public void ajouterParametrageExamen()
+      public String ajouterParametrageExamen()
     {
-        DAOParametrage.create(parametrage);
+      
+     //Ajouter DAOEnseignant 
         
+        DAOParametrage.create(parametrage);
         examen.setParametrage(parametrage);
         DAOExamen.create(examen);
+        listeQuestion(question.getTheme(),"vrai");
     
-        
+    return "ChoixQuestion";
+    
      }
       
       
@@ -199,5 +268,110 @@ public class BeanServices {
     
     
     
+   public List<Question> listeQuestion(String theme,String typeQuestion)
+   {
+       
+
+      nbrQuestion = getParametrage().getNbrQuestion();
+         
+      ListQuestions =  DAOQuestion.ListeQuestions(theme,nbrQuestion,typeQuestion);
+     
+       return ListQuestions;
+  }
     
+ 
+   
+     public List<Reponse> listeReponses(Long idQuestion)
+   {
+      
+       Question qes= DAOQuestion.find(idQuestion);
+       ListReponse =  DAOReponse.RechercheReponse(qes);
+      
+       return ListReponse;
+      
+  }
+      
+     public void  ajouterQuestionExamen()
+     {
+           
+         
+      QuestionExamen questionExamen = new QuestionExamen();
+         
+      questionExamen.setQuestion(selectedQuestion);
+      Examen e = DAOExamen.find(examen.getId());
+      questionExamen.setExamen(e);
+  
+      
+      nbrQuestionAjouter+=1;
+     
+      DAOQuestionExamen.create(questionExamen);
+  
+      
+       ListQuestions.remove(selectedQuestion);
+     
+       
+     }
+     
+     
+     public void  SupprimerQuestionExamen()
+     {
+        // System.out.println(");
+         
+         List<Question> list; 
+         
+         list =  DAOQuestion.ListeQuestions(question.getTheme(),1,""); 
+         
+        for (Question q : list)
+        {
+        ListQuestions.add(q);
+        }
+         
+        ListQuestions.remove(selectedQuestion);
+     }
+     
+     
+
+  
+     
+     
+     public String AfficherQuestionExamen()
+     {
+         
+        ListQuestionsExamen = DAOQuestion.ListeQuestionsExamen(examen);
+        
+        return "AfficherExamen";
+         
+     }
+     
+     
+     public void AffecterExamen()
+     {
+         
+         List<Etudiant> listE; 
+        
+         listE=   DAOEtudiant.ListeEtudiants(etudiant.getNiveau(), etudiant.getSpecialite());
+     
+           for (Etudiant e : listE )
+           {
+          
+            ExaEtu.setExamen(getExamen());
+            ExaEtu.setEtudiant(e);
+            
+            DAOExaEtu.create(ExaEtu);
+               
+           }
+           
+     }
+     
+     
+     
+     
+     
+     
+     
+     
+     
+    public void preRenderView() {  
+      HttpSession session = ( HttpSession ) FacesContext.getCurrentInstance().getExternalContext().getSession( true ); 
+    }
 }

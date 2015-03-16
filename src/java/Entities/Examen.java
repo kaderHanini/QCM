@@ -64,9 +64,8 @@ public class Examen implements Serializable {
     @OneToOne
     private Enseignant enseignant;
     
-    @OneToMany
-   private List<Etudiant> etudiant;
-
+    
+ 
     public ParametrageQcm getParametrage() {
         return Parametrage;
     }
@@ -89,14 +88,6 @@ public class Examen implements Serializable {
 
     public void setEnseignant(Enseignant enseignant) {
         this.enseignant = enseignant;
-    }
-
-    public List<Etudiant> getEtudiant() {
-        return etudiant;
-    }
-
-    public void setEtudiant(List<Etudiant> etudiant) {
-        this.etudiant = etudiant;
     }
 
   

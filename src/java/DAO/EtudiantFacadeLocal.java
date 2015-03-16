@@ -26,7 +26,7 @@ public interface EtudiantFacadeLocal {
     List<Etudiant> findAll();
 
     List<Etudiant> findRange(int[] range);
-
+     List<Etudiant> ListeEtudiants(String niveau, String specialite);
     int count();
     
 }

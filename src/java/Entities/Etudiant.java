@@ -117,7 +117,6 @@ public class Etudiant extends Personne implements Serializable {
     }
     
     
-     @ManyToMany
-      private List<Examen> Examens;
+  
     
 }

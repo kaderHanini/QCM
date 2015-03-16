@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-       xmlns:p="http://primefaces.org/ui" >
+      xmlns:p="http://primefaces.org/ui" 
+      xmlns:ui="http://java.sun.com/jsf/facelets">
     <h:head>
         <title>Facelet Title</title>
         <h:outputStylesheet name="css/common-style.css" />
@@ -13,17 +14,19 @@
         
         
        <f:view>
-            <h:form>
+           <h:form>
                 
                 
                 
-                 <p:fieldset legend="Parametrage QCM" style="margin-bottom:20px">
+                <f:event type="javax.faces.event.PreRenderViewEvent" listener="#{beanServices.preRenderView}"/> 
+                
+                <p:fieldset legend="Génerer un QCM">
                 
         <h:panelGrid id="panel" columns="2" border="0" cellpadding="10" cellspacing="1">
      
       <p:outputLabel value="Theme" />
-      <p:inputText value="#{beanServices.question.theme}"  id="txt" />
-     
+      <p:inputText value="#{beanServices.question.theme}"  />
+   
        
        
       
@@ -34,7 +37,9 @@
        </p:selectOneMenu>
       
         <p:outputLabel value="Nombre Question" />
-        <p:inputText value="#{beanServices.parametrage.nbrQuestion}" size="2" />
+        <p:inputText value="#{beanServices.parametrage.nbrQuestion}" size="2" >
+         
+        </p:inputText>
         
           <p:outputLabel value="Date Examen" />
           <p:calendar value="#{beanServices.examen.dateExamen}" pattern="dd-mm-yyyy">
@@ -82,30 +87,25 @@
     
       <f:facet name="footer" >
         
-             <p:commandButton value="Generer Qcm" action="#{beanServices.ajouterParametrageExamen}" update="panel" />
-                
-            <p:commandButton value="Annuler" action="#{beanServices.ajouterParametrageExamen}" update="panel" />
+          
+          <p:commandButton  action="#{beanServices.ajouterParametrageExamen}" value="Génerer Qcm" >
+       
+          </p:commandButton>
+          
+            <p:commandButton value="Annuler" action="Reset"/>
+      
+      
+      
       </f:facet>
   
       
 
 </h:panelGrid>
                      
-                     
-                     
-                 </p:fieldset>
-                   <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />    
-                
-             
-                
-                
-                
-              
-               
-              
-                
-                
-            </h:form>
+                </p:fieldset>           
+       
+           </h:form>
+      
         </f:view>
     </h:body>
 </html>

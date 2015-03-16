@@ -12,7 +12,7 @@ import javax.persistence.*;
  * @author kader
  */
 @Entity
-public class QuestionExamen implements Serializable {
+public class ExamenEtudiant implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -36,10 +36,10 @@ public class QuestionExamen implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof QuestionExamen)) {
+        if (!(object instanceof ExamenEtudiant)) {
             return false;
         }
-        QuestionExamen other = (QuestionExamen) object;
+        ExamenEtudiant other = (ExamenEtudiant) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -48,16 +48,24 @@ public class QuestionExamen implements Serializable {
 
     @Override
     public String toString() {
-        return "Entities.QuestionExamen[ id=" + id + " ]";
+        return "Entities.ExamenEtudiant[ id=" + id + " ]";
+    }
+    
+    
+    
+     @ManyToOne( optional=true )
+    private Etudiant etudiant ;
+     
+      @ManyToOne( optional=true )
+    private Examen examen;
+
+    public Etudiant getEtudiant() {
+        return etudiant;
     }
 
-    
-    
-    @OneToOne
-    private Question question;
-    
-    @ManyToOne( optional=true )
-    private Examen examen;
+    public void setEtudiant(Etudiant etudiant) {
+        this.etudiant = etudiant;
+    }
 
     public Examen getExamen() {
         return examen;
@@ -66,17 +74,10 @@ public class QuestionExamen implements Serializable {
     public void setExamen(Examen examen) {
         this.examen = examen;
     }
-
-    public Question getQuestion() {
-        return question;
-    }
-
-    public void setQuestion(Question question) {
-        this.question = question;
-    }
- 
+    
+      
+      
+    
     
     
 }
-
-
