@@ -6,8 +6,10 @@ package DAO;
 
 import Entities.Personne;
 import javax.ejb.Stateless;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -28,6 +30,31 @@ public class PersonneFacade extends AbstractFacade<Personne> implements Personne
     }
     
     
+    @Override
+    public Personne RecherchePersonne(String Login, String Pswd)
     
+    
+    
+    {
+        Personne p;
+    
+       
+    Query q =  getEntityManager().createQuery("Select p from Personne p where p.login=:login and p.pswd=:pswd");
+    q.setParameter("login",Login);
+    q.setParameter("pswd", Pswd);
+    
+    
+    try
+    {
+    p =(Personne)q.getSingleResult();
+      return p;
+    }
+    catch(Exception e )
+    {
+   
+      return null;
+    }   
+ 
+    }
     
 }

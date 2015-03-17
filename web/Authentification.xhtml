@@ -1,47 +1,216 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-       xmlns:p="http://primefaces.org/ui" >
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
-    
-    <h:form>            
-    <h:outputLink value="javascript:void(0)" onclick="PF('dlg').show();" title="login">
-        
-    </h:outputLink>
- 
-    <p:growl id="growl" sticky="true" showDetail="true" life="3000" />
- 
-    <p:dialog header="Login" widgetVar="dlg" resizable="false">
-        <h:panelGrid columns="2" cellpadding="5">
-            <h:outputLabel for="username" value="Username:" />
-            <p:inputText id="username" value="#{userLoginView.username}" required="true" label="username" />
- 
-            <h:outputLabel for="password" value="Password:" />
-            <p:password id="password" value="#{userLoginView.password}" required="true" label="password" />
- 
-            <f:facet name="footer">
-                <p:commandButton value="Login" update="growl" actionListener="#{userLoginView.login}"
-                                 oncomplete="handleLoginRequest(xhr, status, args)" />
-            </f:facet>  
-        </h:panelGrid>
-    </p:dialog>
-</h:form>
-        
- 
-<script type="text/javascript">
-    function handleLoginRequest(xhr, status, args) {
-        if(args.validationFailed || !args.loggedIn) {
-            PF('dlg').jq.effect("shake", {times:5}, 100);
-        }
-        else {
-            PF('dlg').hide();
-            $('#loginLink').fadeOut();
-        }
-    }
-</script>
-</html>
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	
 
+	
+<h:head>
+	<h:outputStylesheet name="css/common-style.css"  />
+	
+	<script>
+
+
+	
+	
+  function start()
+  {
+    document.getElementById("f1:ajaxloader").style.display = 'block';
+    document.getElementById("f1:er").style.display = 'none';
+  }
+ 
+  function onstart()
+  {
+    document.getElementById("f1:ajaxloader").style.display = 'none';
+    document.getElementById("f1:er").style.display = 'block';
+  }
+  
+ </script>
+
+</h:head>
+    <f:view>
+<h:body onload="document.getElementById('f1:ajaxloader').style.display = 'none';">
+
+
+
+       
+
+
+	<div id="authentification">
+
+		<h:form id="f1">
+
+			
+                    	              
+                    	                
+                    	                
+                    	                <br></br>
+	 <p:ajaxStatus onstart="ajaxloader.show();" onsuccess="ajaxloader.hide();"/> 
+			
+			<p:panelGrid style="width:500px;height:300px; box-shadow: 8px -6px 21px 1px rgba(0, 0, 0, 0.4)" >
+
+				<f:facet name="header" >
+					<p:row>
+				<p:column colspan="2" >
+			    <p:graphicImage name="img/icon_login_user_36x36.gif"  style="margin-left:-260px;"/>
+				<span style="font-size: 22px"> Authentification</span>
+				</p:column>
+					</p:row>
+				</f:facet>
+
+
+				<p:row>
+					<p:column style="padding-left: 70px">
+						<br></br>
+			<table   style="height:120px;width:360px;"> 
+			
+			
+			
+			
+			<tr>
+			<td style="border-color:white">Utilisateur <span style="color: red"> * </span></td>
+                        <td style="border-color:white">  <p:inputText value="#{authentification.login}"  label="Utilisateur" size="12" required="true" /></td>
+			</tr>
+			
+			
+			
+			
+			<tr>
+			<td style="border-color:white">Mot de Passe<span style="color: red"> * </span></td>
+			<td style="border-color:white">
+			
+                            <p:password value="#{authentification.pswd}"  label="Mot de Passe" size="12" required="true"></p:password>
+			</td>
+			
+			</tr>
+			
+			
+			</table>
+		<br></br>
+					</p:column>
+	
+				</p:row>
+				
+				
+				<p:row>
+				<p:column>
+                                       <p:outputLabel value="Mot de passe Oublié ?" style="margin-left:100px;color:red;"/>
+			  <p:commandLink onclick="PF('dlg1').show();" style="text-decoration:none;">
+                                 Cliquez Ici !
+				</p:commandLink>
+				</p:column>
+				</p:row>	
+
+
+
+		    
+				<f:facet name="footer">
+					<p:row>
+						<p:column colspan="2" >
+                                                    <p:commandButton action="#{authentification.Authentification}" value="s'Authentifier" style="margin-left:350px;width:140px;font-size:15px"  update="f1:msg" onclick="start()" oncomplete="onstart()" ajax="false"  />
+						</p:column>
+					</p:row>
+				</f:facet>
+			</p:panelGrid>
+		
+
+		
+		
+		
+	<br></br>
+	<br></br>
+          
+		  <p:graphicImage  name="img/ajaxloadingbar.gif" id="ajaxloader" style="margin-left:160px" />
+		 
+		 <br></br>
+                 <p:messages style="color:red" id="msg" >
+		 </p:messages>
+		
+		
+                 	
+          
+	
+           
+		
+</h:form>
+
+            
+            
+            
+            
+            
+            
+            
+            
+            <h:form id="f2">
+                
+
+           <p:dialog header="Mot de Passe Oublie" widgetVar="dlg1" id="dlg1">
+           
+           
+           <table>
+           
+           <tr><td>
+           
+           <br></br>
+           <p:graphicImage name="img/2911242543_1.jpg"  style="margin-left:30px;width:250px;height:200px" />
+		   </td>
+		   <td>
+		    Saisissez  Votre Adresse Mail: <br></br><br></br>
+		    <p:inputText value="" required="true"/>
+ 			<p:commandButton value="Envoyer"  ajax="false"/>
+		    <br></br><br></br>
+		   </td>
+		   </tr>
+		    
+		   <tr>
+		   <td colspan="2">
+		   
+		   <p:messages></p:messages>
+		   </td>
+		   
+		   </tr>
+		   
+		   <tr>
+		   <td colspan="2">
+		    <br></br>
+		   <p:outputLabel value="Votre mot de passe sera envoyer a cette adresse, veuillez consulter votre boite mail. "></p:outputLabel>
+		    <br></br>
+		    </td>
+		    </tr>
+		    
+		    <tr>
+		    <td colspan="2">  </td>
+		    </tr>
+		    </table>
+		    </p:dialog>
+			
+		
+	
+		
+		<p:dialog widgetVar="cap">
+	
+	<h:form>  
+                  
+    <p:messages showDetail="true"/>  
+  
+    <p:captcha label="Captcha"/>  
+  
+    <p:commandButton value="Valider" ajax="false"  actionListener="#{captchaBean.submit}" />  
+    </h:form> 
+	
+	
+	</p:dialog>
+		
+		</h:form>		
+	</div>
+	
+	
+
+	
+
+</h:body>
+</f:view>
+</html>

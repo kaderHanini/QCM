@@ -27,6 +27,8 @@ public interface PersonneFacadeLocal {
 
     List<Personne> findRange(int[] range);
 
+    Personne RecherchePersonne(String Login, String Pswd);
+            
     int count();
     
 }

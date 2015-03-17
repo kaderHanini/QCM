@@ -53,11 +53,10 @@ public class ExamenEtudiant implements Serializable {
     
     
     
-     @ManyToOne( optional=true )
+     @ManyToOne(optional=true)
     private Etudiant etudiant ;
      
-      @ManyToOne( optional=true )
-    private Examen examen;
+
 
     public Etudiant getEtudiant() {
         return etudiant;
@@ -66,6 +65,10 @@ public class ExamenEtudiant implements Serializable {
     public void setEtudiant(Etudiant etudiant) {
         this.etudiant = etudiant;
     }
+
+
+    @ManyToOne
+    private Examen examen;
 
     public Examen getExamen() {
         return examen;

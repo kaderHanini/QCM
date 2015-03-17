@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui" 
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+ 
+
+	<h:head>
+           
+		<h:outputStylesheet name="css/common-style.css"  />
+        </h:head>
+	
+<f:view >    
+        <h:body>
+
+
+   	<div id="authentification" style="border:solid 1px black">
+		<br></br>
+
+		<h4 style="color:red;margin-left: 15px;"> Vous avez depasse le maximum autorise de tentatives de connexion . <br></br>
+		vous devez maintenat ressoudre le CAPTCHA ci dessous    </h4>
+		<br></br>
+			<h:form id="f1" style="margin-left:80px;">
+
+				<p:messages showDetail="true"/>  
+  
+ 			   <p:captcha label="Captcha"/> 
+ 			   <br></br> 
+  
+    		 <p:commandButton value="Valider" ajax="false" actionListener="#{captchaBean.submit}" style="margin-left:106px" />  
+				
+			</h:form>
+		</div>
+
+    
+
+	</h:body>
+</f:view>
+</html>

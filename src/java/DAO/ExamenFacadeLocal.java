@@ -4,6 +4,7 @@
  */
 package DAO;
 
+import Entities.Etudiant;
 import Entities.Examen;
 import java.util.List;
 import javax.ejb.Local;
@@ -27,6 +28,9 @@ public interface ExamenFacadeLocal {
 
     List<Examen> findRange(int[] range);
 
+    
+    List<Examen> RechercheExamensEtudiant(Etudiant e);
+    
     int count();
     
 }

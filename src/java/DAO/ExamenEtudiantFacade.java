@@ -4,10 +4,15 @@
  */
 package DAO;
 
+import Entities.Etudiant;
+import Entities.Examen;
 import Entities.ExamenEtudiant;
+import Entities.Personne;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -26,5 +31,10 @@ public class ExamenEtudiantFacade extends AbstractFacade<ExamenEtudiant> impleme
     public ExamenEtudiantFacade() {
         super(ExamenEtudiant.class);
     }
+    
+    
+    
+    
+      
     
 }

@@ -62,6 +62,14 @@ public class BeanServices {
     
     @EJB
     private ExamenEtudiantFacadeLocal DAOExaEtu;
+
+    public ExamenEtudiantFacadeLocal getDAOExaEtu() {
+        return DAOExaEtu;
+    }
+
+    public void setDAOExaEtu(ExamenEtudiantFacadeLocal DAOExaEtu) {
+        this.DAOExaEtu = DAOExaEtu;
+    }
    
    
     @EJB
@@ -95,8 +103,10 @@ public class BeanServices {
     private List<Question> ListQuestions;
     private List<Reponse> ListReponse;
      private int nbrQuestionAjouter;
-     private ExamenEtudiant ExaEtu = new ExamenEtudiant();
-   
+     private ServiceEtudiant ExaEtu = new ServiceEtudiant();
+   private Etudiant etudiant = new Etudiant();
+  
+     
      
       private List<Question> ListQuestionsExamen;
 
@@ -135,8 +145,7 @@ public class BeanServices {
     }
     //<editor-fold defaultstate="collapsed" desc="comment">
     private Enseignant  enseignant = new Enseignant();
-    //</editor-fold>
-    private Etudiant etudiant = new Etudiant();
+
 
     public Etudiant getEtudiant() {
         return etudiant;
@@ -347,17 +356,23 @@ public class BeanServices {
      public void AffecterExamen()
      {
          
+         
+      
+         
          List<Etudiant> listE; 
-        
          listE=   DAOEtudiant.ListeEtudiants(etudiant.getNiveau(), etudiant.getSpecialite());
      
-           for (Etudiant e : listE )
+         
+            System.out.println("size List :"+ listE);
+           
+            for (Etudiant e : listE )
            {
-          
-            ExaEtu.setExamen(getExamen());
-            ExaEtu.setEtudiant(e);
-            
-            DAOExaEtu.create(ExaEtu);
+               
+              ExamenEtudiant ex = new ExamenEtudiant();
+               
+              ex.setEtudiant(e);
+              ex.setExamen(examen);
+              DAOExaEtu.create(ex);
                
            }
            
@@ -374,4 +389,11 @@ public class BeanServices {
     public void preRenderView() {  
       HttpSession session = ( HttpSession ) FacesContext.getCurrentInstance().getExternalContext().getSession( true ); 
     }
+    
+    
+   
+    
+    
+    
+    
 }
