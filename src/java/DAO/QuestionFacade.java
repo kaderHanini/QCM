@@ -41,13 +41,13 @@ public class QuestionFacade extends AbstractFacade<Question> implements Question
                List<Question> listeQuestion ;
        
        
-         Query r = getEntityManager().createQuery("select q from Question as q where q.theme=:theme");
-          r.setParameter("theme", theme);
+         Query r = getEntityManager().createNativeQuery("select * from Question as q where q.theme like '"+theme+"' ORDER BY RANDOM()",Question.class);
+        System.out.println("select * from Question as q where q.theme like '"+theme+"' ORDER BY RANDOM()");
+          
           r.setMaxResults(nbrQuestion);
          listeQuestion =  r.getResultList();
          
-         System.out.println("nnnnnnnnnnnnnbr"+ nbrQuestion);
-        
+       
          return  listeQuestion;
        
        

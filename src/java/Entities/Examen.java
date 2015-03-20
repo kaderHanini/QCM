@@ -65,6 +65,17 @@ public class Examen implements Serializable {
     private Enseignant enseignant;
     
     
+    
+    private String matiere;
+
+    public String getMatiere() {
+        return matiere;
+    }
+
+    public void setMatiere(String matiere) {
+        this.matiere = matiere;
+    }
+    
  
     public ParametrageQcm getParametrage() {
         return Parametrage;

@@ -27,14 +27,14 @@
                 
    
                 
-       <p:dataTable var="Note" value="">
+                <p:dataTable var="note" value="#{serviceEtudiant.consulterNote}">
            
     <p:column headerText="Matiere">
-        <h:outputText value="" />
+       #{note.examen.typeExamen}
     </p:column>
  
     <p:column headerText="Note">
-        <h:outputText value="" />
+       #{note.score}
     </p:column>
  
  

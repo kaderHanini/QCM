@@ -10,120 +10,238 @@
         <h:outputStylesheet name="css/common-style.css" />
     </h:head>
     <h:body>
-        
+
         <div id="page">
-            
-            
-     
-        <div id="header">
-        <ui:include src="/HeadEnseignant.xhtml"></ui:include>
-        </div>
-        
-        <div id="content">
-       <f:view>
-           <h:form>
-                
-                
-                
-                <f:event type="javax.faces.event.PreRenderViewEvent" listener="#{beanServices.preRenderView}"/> 
-                
-                <br></br>
-                
-                <p:fieldset legend="Génerer un QCM">
-                
-        <h:panelGrid id="panel" columns="2" border="0" cellpadding="10" cellspacing="1">
-     
-      <p:outputLabel value="Theme" />
-      <p:selectOneMenu value="#{beanServices.question1.theme}"   >
-            <f:selectItem itemValue="Informatique" itemLabel="Informatique" />
-            <f:selectItem itemValue="Science" itemLabel="Science" />	
-               <f:selectItem itemValue="Merise" itemLabel="Merise" />
-            <f:selectItem itemValue="Base de donnée" itemLabel="Base de donnée" />
-          
-       </p:selectOneMenu>
-      
-     
-       
-      
-      <h:outputLabel value="Type Question" ></h:outputLabel>
-      <p:selectOneMenu value="#{beanServices.question1.typeQuestion}"   >
-            <f:selectItem itemValue="vrai/Faux" itemLabel="Vrai/Faux" />
-            <f:selectItem itemValue="Choix Multiples" itemLabel="Choix Multiples" />	   							
-       </p:selectOneMenu>
-      
-        <p:outputLabel value="Nombre Question" />
-       <p:spinner value="#{beanServices.parametrage.nbrQuestion}" size="1" />
-    
-      
-        
-          <p:outputLabel value="Date Examen" />
-          <p:calendar value="#{beanServices.examen.dateExamen}" pattern="dd-mm-yyyy">
-            
-          </p:calendar>
-                    
-        
-        <p:outputLabel value="Type Examen" />
-        <p:selectOneMenu value="#{beanServices.examen.typeExamen}"   >
-            <f:selectItem itemValue="Entraînement" itemLabel="Entraînement" />
-            <f:selectItem itemValue="Interrogation écrite" itemLabel="Interrogation" />
-             <f:selectItem itemValue="Partiel" itemLabel="Partiel" />
-            <f:selectItem itemValue="Terminal" itemLabel="Terminal" />
-       </p:selectOneMenu>
 
-     
-      
-      <p:outputLabel value="Duree" />
-      <p:inputText value="#{beanServices.parametrage.duree}" size="10"/>
-      
-      
-      <p:outputLabel value="Calculatrice Autorisée" />
-      <p:selectOneMenu value="#{beanServices.parametrage.cacl}">
-            <f:selectItem itemValue="true" itemLabel="Oui" />
-            <f:selectItem itemValue="false" itemLabel="Non" />	   							
-       </p:selectOneMenu>	
-      
-      
-      
-      
-      
-  
-        <p:outputLabel value="Nombre Pts +" />
-       <p:spinner value="#{beanServices.parametrage.ptsReponseCorrecte}" size="1" />
-        
-      <p:outputLabel value="Nombre Pts -" />
-      <p:spinner value="#{beanServices.parametrage.ptsReponseIncorrecte}" size="1" />
-      
-      <p:outputLabel value="Nombre Pts 0" />
-       <p:spinner value="#{beanServices.parametrage.ptsAbsenceReponse}" size="1" />
-    
-      
-      <p:outputLabel value="Enregistrer Parametrage" />
-      <p:inputText value="#{beanServices.parametrage.nomModele}" size="20"/>
-    
-      <f:facet name="footer" >
-        
-          
-          <p:commandButton  action="#{beanServices.ajouterParametrageExamen}" value="Génerer Qcm" >
-       
-          </p:commandButton>
-          
-            <p:commandButton value="Annuler" action="Reset"/>
-      
-      
-      
-      </f:facet>
-  
-      
 
-</h:panelGrid>
-                     
-                </p:fieldset>           
-       
-           </h:form>
-      
-        </f:view>
+
+            <div id="header">
+                <ui:include src="/HeadEnseignant.xhtml"></ui:include>
+            </div>
+
+            <div id="content">
+                <f:view>
+                    <h:form>
+
+
+
+                        <f:event type="javax.faces.event.PreRenderViewEvent" listener="#{beanServices.preRenderView}"/> 
+
+
+
+                        <p:panelGrid style="width: 100%;font-size: 20px" >
+                            <f:facet name="header">
+                            <p:row>
+                                <p:column colspan="2" >
+
+                                    <p:outputLabel value="Générer Examen" style="font-size: 22px;text-align:center"/>
+
+                                </p:column>
+
+                            </p:row>
+                            </f:facet>
+                            <p:row>
+                                <p:column colspan="2" styleClass="ui-widget-header">
+
+                                    <p:outputLabel value="Parametre de generation" style="font-size: 20px;text-align:center"/>
+
+                                </p:column>
+
+                            </p:row>
+
+
+
+                            <p:row>
+                                <p:column width="300px">
+                                    <p:outputLabel value="Theme" />
+                                </p:column>
+                                <p:column>
+                                    <p:selectOneMenu value="#{beanServices.question1.theme}"   >
+                                        <f:selectItem itemValue="Informatique" itemLabel="Informatique" />
+                                        <f:selectItem itemValue="Science" itemLabel="Science" />	
+                                        <f:selectItem itemValue="Merise" itemLabel="Merise" />
+                                        <f:selectItem itemValue="Base de donnée" itemLabel="Base de donnée" />
+
+                                    </p:selectOneMenu>
+                                </p:column>
+                            </p:row>
+
+
+                            <p:row>
+                                <p:column>
+                                    <h:outputLabel value="Type Question" ></h:outputLabel>
+                                </p:column>
+                                <p:column>
+                                    <p:selectOneMenu value="#{beanServices.question1.typeQuestion}"   >
+                                        <f:selectItem itemValue="vrai/Faux" itemLabel="Vrai/Faux" />
+                                        <f:selectItem itemValue="Choix Multiples" itemLabel="Choix Multiples" />	   							
+                                    </p:selectOneMenu>
+                                </p:column>
+                            </p:row>
+
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel value="Nombre Question" />
+                                </p:column>
+                                <p:column>
+                                    <p:spinner value="#{beanServices.parametrage.nbrQuestion}" size="1" />
+                                </p:column>
+                            </p:row>
+
+                            <p:row>
+                                <p:column colspan="2" styleClass="ui-widget-header">
+
+                                    <p:outputLabel value="Détails de l'examen" style="font-size: 20px;text-align:center"/>
+
+                                </p:column>
+
+                            </p:row>
+
+                                <p:row>
+                                <p:column>
+                                    <p:outputLabel value="Matiere" />
+
+                                </p:column>
+                                <p:column>
+                                    <p:inputText  value="#{beanServices.examen.matiere}">
+                                    </p:inputText>
+
+                                </p:column>
+                            </p:row>  
+                            
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel value="Date Examen" />
+
+                                </p:column>
+                                <p:column>
+                                    <p:calendar value="#{beanServices.examen.dateExamen}" pattern="dd-mm-yyyy"/>
+
+                                </p:column>
+                            </p:row>      
+
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel value="Type Examen" />
+                                </p:column>
+                                <p:column>
+                                    <p:selectOneMenu value="#{beanServices.examen.typeExamen}"   >
+                                        <f:selectItem itemValue="Entraînement" itemLabel="Entraînement" />
+                                        <f:selectItem itemValue="Interrogation écrite" itemLabel="Interrogation" />
+                                        <f:selectItem itemValue="Partiel" itemLabel="Partiel" />
+                                        <f:selectItem itemValue="Terminal" itemLabel="Terminal" />
+                                    </p:selectOneMenu>
+                                </p:column>
+                            </p:row>
+
+
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel value="Duree" />
+                                </p:column>
+                                <p:column>
+                                    <p:inputText value="#{beanServices.parametrage.duree}" size="10"/>
+                                </p:column>
+                            </p:row>
+
+
+
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel value="Calculatrice Autorisée" />
+                                </p:column>
+                                <p:column>
+                                    <p:selectOneMenu value="#{beanServices.parametrage.cacl}">
+                                        <f:selectItem itemValue="true" itemLabel="Oui" />
+                                        <f:selectItem itemValue="false" itemLabel="Non" />	   							
+                                    </p:selectOneMenu>
+                                </p:column>
+                            </p:row>
+
+
+
+                            <p:row>
+                                <p:column colspan="2" styleClass="ui-widget-header">
+
+                                    <p:outputLabel value="Baréme" style="font-size: 20px;text-align:center"/>
+
+                                </p:column>
+
+                            </p:row>
+
+
+                            <p:row><p:column>
+                                    <p:outputLabel value="Reponse correcte" />
+                                </p:column>
+                                <p:column>
+                                    <p:spinner value="#{beanServices.parametrage.ptsReponseCorrecte}" size="1" />
+                                </p:column>
+                            </p:row> 
+
+
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel value="Reponse incoorecte" />
+                                </p:column>
+                                <p:column>
+                                    <p:spinner value="#{beanServices.parametrage.ptsReponseIncorrecte}" size="1" />
+                                </p:column>
+                            </p:row>
+
+
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel value="Abscence de reponse" />
+                                </p:column>
+                                <p:column>
+                                    <p:spinner value="#{beanServices.parametrage.ptsAbsenceReponse}" size="1" />
+
+                                </p:column>
+                            </p:row>
+
+
+
+                            <p:row>
+                                <p:column colspan="2" styleClass="ui-widget-header">
+
+                                    <p:outputLabel value="Enregistrer Parametrage" style="font-size: 20px;text-align:center"/>
+
+                                </p:column>
+
+                            </p:row>
+
+                            <p:row>
+                                <p:column>
+                                    <p:outputLabel value="Enregistrer Parametrage" />
+                                </p:column>
+                                <p:column>
+                                    <p:inputText value="#{beanServices.parametrage.nomModele}" size="20"/>
+                                </p:column>
+                            </p:row>
+
+
+
+
+                            <f:facet name="footer" >
+                                <p:row>
+                                    <p:column colspan="2">
+                                        <p:commandButton  action="#{beanServices.ajouterParametrageExamen}" value="Génerer Qcm" />
+                                    </p:column>
+
+                                </p:row>
+                            </f:facet>
+
+
+
+                        </p:panelGrid>
+
+
+
+                    </h:form>
+
+                </f:view>
+            </div>
         </div>
-               </div>
     </h:body>
 </html>
 
