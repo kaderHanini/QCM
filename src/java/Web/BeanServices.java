@@ -24,16 +24,18 @@ import javax.ejb.EJB;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
+import org.primefaces.component.panel.Panel;
 
 /**
  *
  * @author kader
  */
 @ManagedBean
-@ApplicationScoped
+@SessionScoped
 //ou RequestScoped
 public class BeanServices {
 
@@ -96,7 +98,15 @@ public class BeanServices {
     }
     
     
-    private Question question = new Question();
+    private Question question1 = new Question();
+
+    public Question getQuestion1() {
+        return question1;
+    }
+
+    public void setQuestion1(Question question1) {
+        this.question1 = question1;
+    }
     private Reponse reponse = new Reponse();
     private ParametrageQcm parametrage = new ParametrageQcm();
     private Examen  examen = new Examen();
@@ -107,7 +117,9 @@ public class BeanServices {
    private Etudiant etudiant = new Etudiant();
   
      
-     
+   
+
+   
       private List<Question> ListQuestionsExamen;
 
     public List<Question> getListQuestionsExamen() {
@@ -207,7 +219,7 @@ public class BeanServices {
     }
 
     public void setQuestion(Question question) {
-        this.question = question;
+        this.question1 = question;
     }
 
     public void setReponse(Reponse reponse) {
@@ -217,7 +229,7 @@ public class BeanServices {
  
 
     public Question getQuestion() {
-        return question;
+        return question1;
     }
 
     public Reponse getReponse() {
@@ -228,14 +240,14 @@ public class BeanServices {
     
     public String ajouterQuestion()
     {
-     DAOQuestion.create(question);
+     DAOQuestion.create(question1);
      return "AjouterReponse";
     }  
     
    
     public void ajouterReponse()
     {
-      reponse.setQuestion(question);
+      reponse.setQuestion(question1);
       DAOReponse.create(reponse);
         
     }
@@ -246,13 +258,16 @@ public class BeanServices {
     {
       
      //Ajouter DAOEnseignant 
+         Enseignant e = (Enseignant) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("enseignant");
+        
         
         DAOParametrage.create(parametrage);
         examen.setParametrage(parametrage);
+        examen.setEnseignant(e);
         DAOExamen.create(examen);
-        listeQuestion(question.getTheme(),"vrai");
+        listeQuestion(question1.getTheme(),"vrai");
     
-    return "ChoixQuestion";
+        return "ChoixQuestion";
     
      }
       
@@ -280,6 +295,9 @@ public class BeanServices {
    public List<Question> listeQuestion(String theme,String typeQuestion)
    {
        
+       
+       
+      System.out.println(theme);
 
       nbrQuestion = getParametrage().getNbrQuestion();
          
@@ -328,7 +346,7 @@ public class BeanServices {
          
          List<Question> list; 
          
-         list =  DAOQuestion.ListeQuestions(question.getTheme(),1,""); 
+         list =  DAOQuestion.ListeQuestions(question1.getTheme(),1,""); 
          
         for (Question q : list)
         {
@@ -355,11 +373,7 @@ public class BeanServices {
      
      public void AffecterExamen()
      {
-         
-         
-      
-         
-         List<Etudiant> listE; 
+          List<Etudiant> listE; 
          listE=   DAOEtudiant.ListeEtudiants(etudiant.getNiveau(), etudiant.getSpecialite());
      
          
@@ -379,6 +393,8 @@ public class BeanServices {
      }
      
      
+    
+     
      
      
      
@@ -387,7 +403,7 @@ public class BeanServices {
      
      
     public void preRenderView() {  
-      HttpSession session = ( HttpSession ) FacesContext.getCurrentInstance().getExternalContext().getSession( true ); 
+      HttpSession session = ( HttpSession ) FacesContext.getCurrentInstance().getExternalContext().getSession(true); 
     }
     
     

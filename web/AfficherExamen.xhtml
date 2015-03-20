@@ -3,14 +3,27 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-       xmlns:p="http://primefaces.org/ui" >
+      xmlns:p="http://primefaces.org/ui" 
+      xmlns:ui="http://java.sun.com/jsf/facelets">
     <h:head>
         <title>Facelet Title</title>
+        <h:outputStylesheet name="css/common-style.css" />
     </h:head>
+  
+        <f:view>
+
     <h:body>
-       
         
-        <h:form>
+        <div id="page">
+            
+            
+     
+        <div id="header">
+        <ui:include src="/HeadEnseignant.xhtml"></ui:include>
+        </div>
+        
+        <div id="content">
+           <h:form>
             
            
             
@@ -40,18 +53,18 @@
                 <p:separator></p:separator>
     </p:dataScroller>
             
-             <h:commandLink  value="Ajouter Question" action="ChoixQuestion" ></h:commandLink>
-             
-             <br></br>
-             
-              
-             <h:commandLink  value="Affecter Examen " action="AffecterExamen" ></h:commandLink>
+               <p:commandButton  value="Ajouter Question" action="ChoixQuestion" ></p:commandButton>
+               <p:commandButton  value="Affecter Examen " action="AffecterExamen" ></p:commandButton>
              
              
 </h:form>
         
-        
+        </div>
+            
+        </div>
         
     </h:body>
+                </f:view>
+
 </html>
 

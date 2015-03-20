@@ -94,6 +94,7 @@ public class Authentification {
         if(p instanceof Enseignant)
         {
             this.enseignant = (Enseignant) p;
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("enseignant", p);
             return "GenererQcm";
         }
         else

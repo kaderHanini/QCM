@@ -9,13 +9,20 @@
         <title>Facelet Title</title>
         <h:outputStylesheet name="css/common-style.css" />
     </h:head>
+       <f:view>
     <h:body>
         
+        <div id="page">
+            
+            
+     
+        <div id="header">
+        <ui:include src="/HeadEnseignant.xhtml"></ui:include>
+        </div>
         
-        
-       <f:view>
+        <div id="content">
+    
            <h:form>
-                
                 
                 
                 <f:event type="javax.faces.event.PreRenderViewEvent" listener="#{beanServices.preRenderView}"/> 
@@ -66,8 +73,10 @@
                 </p:fieldset>           
        
            </h:form>
-      
-        </f:view>
+        </div>
+        </div>
+       
     </h:body>
+            </f:view>
 </html>
 

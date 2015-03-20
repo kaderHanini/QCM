@@ -37,10 +37,9 @@ public class ExamenFacade extends AbstractFacade<Examen> implements ExamenFacade
         List<Examen> ListExam;
         
         
-    
-       
-    Query q =  getEntityManager().createQuery("Select p from ExamenEtudiant p where p.etudiant=:e");
-    q.setParameter("e",e);
+           Query q = em.createNativeQuery("select * from Examen q where q.id in (select r.EXAMEN_ID from EXAMENETUDIANT r where r.ETUDIANT_ID="+e.getId()+")",Examen.class);
+        // System.out.println("select * from Examen q where q.ID in (select r.EXAMEN_ID from EXAMENETUDIANT r where r.ETUDIANT_ID="+e.getId()+")");
+  
    try
     {
     ListExam =q.getResultList();

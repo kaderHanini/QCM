@@ -11,49 +11,90 @@
     </h:head>
     <f:view>
     <h:body>
-        
-     
+       
+         <div id="page">
               <div id="header">
-        <ui:include src="/HeadEtudiant.xhtml"></ui:include>
-        </div>
-           <div id="page">
+                  <ui:include src="/HeadEtudiant.xhtml"></ui:include>
+           </div>
+       
         
         <div id="content">
        
             <h:form id="f1"> 
         
-            
-            <p:commandButton action="#{serviceEtudiant.ExamenEtudiant}" update=":f1:p1 , :f1:msg"></p:commandButton>
-            
-            
-            
-            
-            <p:messages id="msg"></p:messages>
-       
         
-            
+                <p:commandButton value="Mes Examen" action="#{serviceEtudiant.ExamenEtudiant}" update=":f1:tab1,:f1:basic">
+               
+                </p:commandButton>
          
-            <p:dataScroller id="p1"  widgetVar="p1"  value="#{serviceEtudiant.listeExamens}" var="exam" chunkSize="10">
-        <f:facet name="header">
-           Examen a Passer
-        </f:facet>
- 
-        <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
+                 <p:messages autoUpdate="true" ></p:messages>
+          
+            
+                <p:panel id="basic" header="Listes des Examens" footer="IAE LYON" style="margin-bottom:20px" binding="#{serviceEtudiant.panelQestionExamen}"  visible="false" >
+              
            
-                    <h:outputText value="Id:" />
-                    <h:outputText value="#{exam.id}" style="font-weight: bold"/>
+            
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                   
+             
+                
+                
+                <p:dataTable value="#{serviceEtudiant.listeExamens}" var="ex" id="tab1"  
+                             rows="10" paginator="true" widgetVar="tab1" >
+  
+    
  
-                    <h:outputText value="Type Examen" />
-                    <h:outputText value="#{exam.typeExamen}" style="font-weight: bold"/>
- 
-                    <h:outputText value="Date Examen" />
-                    <h:outputText value="#{exam.dateExamen}" style="font-weight: bold"/>
+
+                      <p:column headerText="Matiere">
+                          <h:outputText value="" />
+                           </p:column>
                     
-                     <h:outputText value="Enseignant" />
-                     <h:outputText value="#{exam.enseignant}" style="font-weight: bold"/>
-           
-        </h:panelGrid>
-    </p:dataScroller>
+                    
+                    <p:column headerText="Type Examen">
+                        <h:outputText value="#{ex.typeExamen}" />
+    </p:column>
+ 
+    <p:column headerText="Email Enseignant">
+        <h:outputText value="#{ex.enseignant.email}" />
+    </p:column>
+ 
+    <p:column headerText="Date Examen">
+        <h:outputText value="#{ex.dateExamen}"  />
+    </p:column>
+                    
+    <p:column headerText="Duree Examen">
+        <h:outputText value="#{ex.parametrage.duree}" />
+    </p:column>
+     
+   <p:column headerText="Calculatrice">
+        <h:outputText value="#{ex.parametrage.cacl}" />
+    </p:column>
+                    
+                    
+    <p:column headerText="Action">
+        <p:commandButton value="Passer Examen" action="#{serviceEtudiant.PasserExamen}">
+            <f:setPropertyActionListener target="#{serviceEtudiant.examen}" value="#{ex}" />
+        </p:commandButton>
+    </p:column>
+</p:dataTable>
+                
+              </p:panel>
+                
+                
+                  
+                
+                
+                
+                
 </h:form>
             
 

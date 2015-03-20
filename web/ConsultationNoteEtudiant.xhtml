@@ -5,28 +5,27 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui" 
       xmlns:ui="http://java.sun.com/jsf/facelets">
-    
-    
     <h:head>
-
         <title>Facelet Title</title>
+        <h:outputStylesheet name="css/common-style.css" />
     </h:head>
+    <f:view>
     <h:body>
-        <f:view>
-            <h:form>
+       
+         <div id="page">
+            
+             
+             <div id="header">
+                  <ui:include src="/HeadEtudiant.xhtml"></ui:include>
+             </div>
+       
+        
+        <div id="content">
+       
+            <h:form id="f1"> 
                 
-    <h:panelGrid id="panel" columns="2" border="0"
-   cellpadding="10" cellspacing="1">
-                    
-      <f:facet name="header">
-        <h:outputText value="Consulter mes notes"/>
-      </f:facet>
-                  
-      <p:outputLabel value="Année" />
-      <p:selectOneMenu value="#{beanServices.examen.dateExamen}"   >
-       </p:selectOneMenu>
-      
-      </h:panelGrid>
+                
+   
                 
        <p:dataTable var="Note" value="">
            
@@ -38,17 +37,11 @@
         <h:outputText value="" />
     </p:column>
  
-    
  
 </p:dataTable>
        
       
-      <f:facet name="footer">
-         <h:panelGroup style="display:block; text-align:center">
-            <h:commandButton value="Ajouter" action="#{beanServices.NoteExamenParAnnee}" ></h:commandButton>
-         </h:panelGroup>
-      </f:facet>
-
+   
                 
                 
               
@@ -57,8 +50,9 @@
                 
                 
             </h:form>
-        </f:view>
-
+     
+</div></div>
     </h:body>
+           </f:view>
 </html>
 

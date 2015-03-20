@@ -19,6 +19,7 @@ public class ReponseEtudiant implements Serializable {
     private Long id;
 
     public Long getId() {
+        
         return id;
     }
 
@@ -53,13 +54,48 @@ public class ReponseEtudiant implements Serializable {
     
     
     
-    @ManyToOne
-    private Resultat resultat;
+   
+    
+    
+       
+        @ManyToOne(optional=true)
+        private Examen examen;
+        
+        
+          @ManyToOne(optional=true)
+        private Etudiant etudiant;
+
+    public Etudiant getEtudiant() {
+        return etudiant;
+    }
+
+    public void setEtudiant(Etudiant etudiant) {
+        this.etudiant = etudiant;
+    }
+
+    public Examen getExamen() {
+        return examen;
+    }
+
+    public void setExamen(Examen examen) {
+        this.examen = examen;
+    }
+
+    public String getReponseJuste() {
+        return reponseJuste;
+    }
+
+    public void setReponseJuste(String reponseJuste) {
+        this.reponseJuste = reponseJuste;
+    }
+    
     
     
     @ManyToOne
     private Question question ;
+    
     private String reponse ;
+    private String reponseJuste ;
 
     public Question getQuestion() {
         return question;
@@ -77,13 +113,7 @@ public class ReponseEtudiant implements Serializable {
         this.reponse = reponse;
     }
 
-    public Resultat getResultat() {
-        return resultat;
-    }
-
-    public void setResultat(Resultat resultat) {
-        this.resultat = resultat;
-    }
+ 
     
     
     

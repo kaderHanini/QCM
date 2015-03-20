@@ -11,7 +11,7 @@
         </h:head>
 <h:body> 
 
-    <table >
+    <table>
         <tr>
            <td style="width:75%">
                 <p:graphicImage  name="img/visuel-quizz.png" style="width:150px;padding-left:0px" />
@@ -21,7 +21,7 @@
             <td valign="middle" colspan="3" >
                 
                 <div style="box-shadow">
-                    <h:outputText value="Bonjour #{authentification.etudiant.nom} #{authentification.etudiant.prenom} "    style="font-size:20px; border-left:1px ;color:grey;padding-right: 250px;"/>
+                    <h:outputText value="Bonjour #{authentification.etudiant.nom} #{authentification.etudiant.prenom} "    style="font-size:20px; border-left:1px ;color:grey;padding-right:50px;"/>
                       <p:commandLink style="text-decoration:none;" action="#{authentification.Deconnexion}">
                     <h:outputText value="Deconnexion" style="font-size:20px;border-left:1px solid blue;color:grey;padding-left: 15px " />
                         </p:commandLink>
@@ -30,8 +30,8 @@
         </tr>
     </table>
     <h:form> 
-        <p:menubar style="width:90%;margin:0 auto">  
-                <p:menuitem value="Passer Examen" style="border-left:solid 1px grey" url="PasserExamen.xhtml"  />
+        <p:menubar style="margin:0 auto">  
+                <p:menuitem value="Passer Examen" style="border-left:solid 1px grey" url="ExamensEtudiant.xhtml"  />
                 <p:menuitem value="Consulter mes notes" style="border-left:solid 1px grey" url="ConsultationNoteEtudiant.xhtml"  />
 	</p:menubar>
     </h:form>

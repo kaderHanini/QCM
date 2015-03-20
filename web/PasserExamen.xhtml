@@ -1,12 +1,105 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui" 
+      xmlns:ui="http://java.sun.com/jsf/facelets">
     <h:head>
         <title>Facelet Title</title>
+        <h:outputStylesheet name="css/common-style.css" />
     </h:head>
+    <f:view>
     <h:body>
-        Hello from Facelets
+       
+             <div id="page">
+              <div id="header">
+        <ui:include src="/HeadEtudiant.xhtml"></ui:include>
+        </div>
+   
+        
+        <div id="content">
+       
+            <h:form id="f1"> 
+        
+        
+        
+         
+          
+            
+                <p:panel id="basic" header="Examen" footer="IAE LYON" style="margin-bottom:20px" >
+              
+                    
+                    <h:panelGrid columns="2">
+                        
+                        
+                        Date <h:outputText value="#{serviceEtudiant.examen.dateExamen}" ></h:outputText>
+                        Type Examen <h:outputText value="#{serviceEtudiant.examen.typeExamen}"></h:outputText> 
+                        Nombre Question <h:outputText value="#{serviceEtudiant.examen.parametrage.nbrQuestion}"></h:outputText> 
+                        Duree Examen <h:outputText value="#{serviceEtudiant.examen.parametrage.duree}"></h:outputText> 
+                        Calculatrice <h:outputText value="#{serviceEtudiant.examen.parametrage.cacl}"></h:outputText> 
+                        Reponse Correcte <h:outputText value="#{serviceEtudiant.examen.parametrage.ptsReponseCorrecte}"></h:outputText> 
+                        Reponse Incorrecte <h:outputText value="#{serviceEtudiant.examen.parametrage.ptsReponseIncorrecte}"></h:outputText> 
+                        Absence de Reponse <h:outputText value="#{serviceEtudiant.examen.parametrage.ptsAbsenceReponse}"></h:outputText> 
+                        
+                    </h:panelGrid>
+           
+                
+            
+                    
+       <p:dataScroller value="#{serviceEtudiant.listQuestion}" var="question" chunkSize="10" >
+        
+           <f:facet name="header">
+            Questions Examens
+           </f:facet>
+ 
+        
+                <h:panelGrid columns="2" cellpadding="0">
+                    
+ 
+                    <h:outputText value="Question :" />
+                    <h:outputText value="#{question.question}" style="font-weight: bold"/>
+ 
+                    
+                    
+                    <h:panelGroup>
+                          
+                        <p:selectOneRadio id="radioID" value="#{serviceEtudiant.reponse.id}" layout="pageDirection"    >
+                            <f:selectItems value="#{serviceEtudiant.listeReponses(question.id)}" var="sit" itemLabel="#{sit.reponse}" itemValue="#{sit.id}"/> 
+                  
+              
+                <p:ajax listener="#{serviceEtudiant.EnregistrerReponse(question)}"  />
+               </p:selectOneRadio>
+                        
+                    </h:panelGroup>
+
+           
+       
+          
+        </h:panelGrid>
+                
+           
+    </p:dataScroller>
+                    
+                    
+  
+                    <p:commandButton value="Terminer" action="#{serviceEtudiant.CalculerResultat}"></p:commandButton>
+        
+                </p:panel>
+                
+                
+                  
+                
+                
+                
+                
+</h:form>
+            
+
+        </div>
+        </div>
+        
     </h:body>
+    </f:view>
 </html>
 

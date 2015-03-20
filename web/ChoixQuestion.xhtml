@@ -5,30 +5,40 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui" 
       xmlns:ui="http://java.sun.com/jsf/facelets">
-    
     <h:head>
         <title>Facelet Title</title>
+        <h:outputStylesheet name="css/common-style.css" />
     </h:head>
+    
+           <f:view>
+
     <h:body>
         
+        <div id="page">
+            
+            
+     
+        <div id="header">
+        <ui:include src="/HeadEnseignant.xhtml"></ui:include>
+        </div>
+        
+        <div id="content">
+          
+                
         
         <h:form id="f1">
          <p:panel id="test">
          
-         <h:panelGrid  columns="1">
+             <h:panelGrid  columns="1" style="height:500px ;margin: 0 auto" >
 
-     <p:carousel var="car" value="#{beanServices.listQuestions}" itemStyleClass="carItem" numVisible="1" easing="easeOutBounce" styleClass="carouselAdvanced"> 
+             <p:carousel headerText="Choix Des Questions " var="car" value="#{beanServices.listQuestions}" itemStyleClass="carItem" numVisible="1" easing="easeOutBounce" styleClass="carouselAdvanced" > 
       
-         
-         
-          
-         
-          
-          <h:panelGrid columns="2"  style="width: 900px">
+          <h:panelGrid columns="2"  style="width: 900px;height: 90px">
     
-        Numero  <h:outputText value="#{car.id}" />
+       
      
         Question   <h:outputText value="#{car.question}" />
+        Type Question   <h:outputText value="#{car.typeQuestion}" />
         
           </h:panelGrid>
     
@@ -36,7 +46,7 @@
         
           
         <ui:repeat  value="#{beanServices.listeReponses(car.id)}" var="sit">
-            <h:panelGrid columns="3">
+            <h:panelGrid columns="3" style="height:40px">
            
             <h:outputText value="Réponse : "/>
             <h:outputText value="#{sit.reponse}"/> 
@@ -64,7 +74,7 @@
             
           </p:carousel>
    
-             <h:panelGroup>
+             <h:panelGroup >
         
                  <h:outputLabel value="Nombre De Question Ajouter a L'Examen #{beanServices.nbrQuestionAjouter} / #{beanServices.nbrQuestion}" />
                     
@@ -91,6 +101,9 @@
             </p:panel>
         </h:form>
         
+        </div>
+        </div>
     </h:body>
+           </f:view>
 </html>
 
